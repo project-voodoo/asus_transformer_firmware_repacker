@@ -57,10 +57,10 @@ cp -l blob.APP ../system.ext4
 cd ..
 
 log "Building update.zip.."
-mkdir -p update_zip/META-INF/com/google/android/
-cp $BASE_DIR/update_res/updat* update_zip/META-INF/com/google/android/
+cp -r $BASE_DIR/update_template/ update_zip/
 mv system.ext4 update_zip/
 cp -l repacked.blob update_zip/blob
+cp -l $BASE_DIR/rooting/* update_zip/
 
 OUTFILE="repacked-`basename $SOURCE .zip`-CWR-update.zip"
 cd update_zip

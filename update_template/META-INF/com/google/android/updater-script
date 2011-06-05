@@ -16,4 +16,12 @@ show_progress(0.1, 1);
 run_program("/sbin/busybox", "dd", "if=/tmp/blob", "of=/dev/block/mmcblk0p4", "bs=1M");
 delete("/tmp/blob");
 delete("/tmp/system.ext4");
+
+ui_print("Automatic rooting");
+run_program("/sbin/mount",  "system");
+package_extract_file("su", "/system/xbin/su");
+package_extract_file("Superuser.apk", "/system/app");
+run_program("/sbin/chmod", "06755", "/system/xbin/su");
+run_program("/sbin/umount", "/system");
+
 ui_print("Success, reboot is required");
