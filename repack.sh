@@ -39,7 +39,7 @@ if ! test -f blob; then
 fi
 
 mkdir -p ../blob_suff
-if mv blob ../blob_suff; then
+if cp -l blob ../blob_suff; then
 	cd ../blob_suff
 else
 	log "Missing blob!"
@@ -50,15 +50,16 @@ blobunpack blob
 
 log "Blob repacking.."
 blobpack blob.HEADER ../repacked.blob \
-	APP blob.APP \
 	EBT blob.EBT \
 	LNX blob.LNX \
 	PT blob.PT
+cp -l blob.APP ../system.ext4
 cd ..
 
 log "Building update.zip.."
 mkdir -p update_zip/META-INF/com/google/android/
 cp $BASE_DIR/update_res/updat* update_zip/META-INF/com/google/android/
+mv system.ext4 update_zip/
 cp -l repacked.blob update_zip/blob
 
 OUTFILE="repacked-`basename $SOURCE .zip`-CWR-update.zip"
