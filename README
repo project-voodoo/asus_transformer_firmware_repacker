@@ -1,0 +1,8 @@
+ASUS Update zip & blob repacker, by supercurio
+
+depends on BlobTools by RaYmAn
+	http://forum.xda-developers.com/showthread.php?t=1068548
+	https://github.com/AndroidRoot/BlobTools
+
+Repacks an ASUS Update zip into a ClockworkMod Recovery compatible update.zip
+"SOS" blob is not repacked in order to keep the installed custom recovery

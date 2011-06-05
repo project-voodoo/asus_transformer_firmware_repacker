@@ -1,0 +1,12 @@
+ui_print("Repacked ASUS Update flashing");
+show_progress(0.1, 0);
+ui_print("Extracting from update.zip..");
+
+show_progress(0.35, 20);
+package_extract_file("blob", "/tmp/blob");
+
+ui_print("Writing on staging partition..");
+show_progress(1.0, 40);
+run_program("/sbin/busybox", "dd", "if=/tmp/blob", "of=/dev/block/mmcblk0p4", "bs=1M");
+delete("/tmp/blob");
+ui_print("Success, reboot is required");
