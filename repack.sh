@@ -62,7 +62,7 @@ mv system.ext4 update_zip/
 cp -l repacked.blob update_zip/blob
 cp -l $BASE_DIR/rooting/* update_zip/
 
-OUTFILE="repacked-`basename $SOURCE .zip`-CWR-update.zip"
+OUTFILE="repacked-`basename $SOURCE .zip`+root-CWR-update.zip"
 cd update_zip
 zip -r -9 ../$OUTFILE .
 echo
