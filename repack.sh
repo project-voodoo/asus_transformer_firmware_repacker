@@ -25,6 +25,12 @@ else
 	exit 1
 fi
 
+if test -n "$2" && test -d `dirname $2`; then
+	OUTFILE="$2"
+else
+	OUTFILE="../repacked-`basename $SOURCE .zip`+root-CWR-update.zip"
+fi
+
 rm -r $TMP_DIR/* 2>/dev/null
 mkdir -p $TMP_DIR/extraction
 cd $TMP_DIR/extraction
@@ -62,9 +68,9 @@ mv system.ext4 update_zip/
 cp -l repacked.blob update_zip/blob
 cp -l $BASE_DIR/rooting/* update_zip/
 
-OUTFILE="repacked-`basename $SOURCE .zip`+root-CWR-update.zip"
 cd update_zip
-zip -r -9 ../$OUTFILE .
+rm $OUTFILE
+zip -r -9 $OUTFILE .
 echo
 
-ls -lh `readlink -f ../$OUTFILE`
+ls -lh `readlink -f $OUTFILE`
