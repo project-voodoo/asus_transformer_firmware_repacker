@@ -20,7 +20,7 @@ delete("/tmp/system.ext4");
 ui_print("Automatic rooting");
 run_program("/sbin/mount",  "system");
 package_extract_file("su", "/system/xbin/su");
-package_extract_file("Superuser.apk", "/system/app");
+package_extract_file("Superuser.apk", "/system/app/Superuser.apk");
 run_program("/sbin/chmod", "06755", "/system/xbin/su");
 run_program("/sbin/umount", "/system");
 
