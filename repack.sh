@@ -69,7 +69,7 @@ cp -l repacked.blob update_zip/blob
 cp -l $BASE_DIR/rooting/* update_zip/
 
 cd update_zip
-rm $OUTFILE
+rm -f $OUTFILE
 zip -r -9 $OUTFILE .
 echo
 
