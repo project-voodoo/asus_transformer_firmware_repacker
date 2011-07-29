@@ -44,9 +44,9 @@ if ! test -f blob; then
 	rm -r ASUS/
 fi
 
-mkdir -p ../blob_suff
-if cp -l blob ../blob_suff; then
-	cd ../blob_suff
+mkdir -p ../blob_stuff
+if ln blob ../blob_stuff; then
+	cd ../blob_stuff
 else
 	log "Missing blob!"
 	exit 1
@@ -59,14 +59,16 @@ blobpack blob.HEADER ../repacked.blob \
 	EBT blob.EBT \
 	LNX blob.LNX \
 	PT blob.PT
-cp -l blob.APP ../system.ext4
+ln blob.APP ../system.ext4
 cd ..
 
 log "Building update.zip.."
 cp -r $BASE_DIR/update_template/ update_zip/
 mv system.ext4 update_zip/
-cp -l repacked.blob update_zip/blob
-cp -l $BASE_DIR/rooting/* update_zip/
+ln repacked.blob update_zip/blob
+for f in `ls $BASE_DIR/rooting/*`; do
+	ln $f update_zip
+done
 
 cd update_zip
 rm -f $OUTFILE
